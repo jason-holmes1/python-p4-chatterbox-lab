@@ -1,8 +1,8 @@
-"""add cols
+"""add create/update dates
 
-Revision ID: c4e446ce17d3
-Revises: 0e12555d4c52
-Create Date: 2024-01-31 14:49:52.451597
+Revision ID: 3f3d50460645
+Revises: 
+Create Date: 2024-02-01 14:09:31.798683
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c4e446ce17d3'
-down_revision = '0e12555d4c52'
+revision = '3f3d50460645'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('body', sa.String(), nullable=True),
     sa.Column('username', sa.String(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
